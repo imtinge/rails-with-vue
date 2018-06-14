@@ -1,0 +1,30 @@
+<div class="container" id="booksIndex">
+    <article class="message is-dark" v-show="bookInfoBool">
+        <div class="message-header">
+            <p>
+                {{ bookInfo.title }}
+            </p>
+            <button class="delete" aria-label="delete" @click="bookInfoBool=false"></button>
+        </div>
+        <div class="message-body">
+            <p class="subtitle"><strong>Author: </strong>{{ bookInfo.author }}</p>
+            <p class="subtitle"><strong>Publisher: </strong>{{ bookInfo.publisher }}</p>
+            <p class="subtitle"><strong>Genre: </strong>{{ bookInfo.genre }}</p>
+        </div>
+    </article>
+    <div class="columns is-multiline">
+        <% @books.each do |book| %>
+            <div class="column is-6">
+                <div class="card">
+                    <div class="card-content">
+                        <p class="title" @click="setBookInfo(<%= book.id %>)">
+                            <%= book.title %>
+                        </p>
+                    </div>
+                </div>
+            </div> 
+        <% end %>
+        
+    </div>
+</div>
+<%= javascript_pack_tag 'books' %>
